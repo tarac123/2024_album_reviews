@@ -19,6 +19,10 @@
                     <x-nav-link :href="route('albums.index')" :active="request()->routeIs('albums.index')">
                     {{ __('View All Albums') }} 
                     </x-nav-link>
+
+                    <x-nav-link :href="route('albums.create')" :active="request()->routeIs('albums.create')">
+                    {{ __('Add New Album') }} 
+                    </x-nav-link>
                 </div>
                 
 

@@ -27,10 +27,8 @@
         </div>
     </div>
     <!-- success message -->
-    @if(session('success'))
         <x-alert-success>
             {{ session('success') }}
         </x-alert-success>
-    @endif
 </x-app-layout>
 

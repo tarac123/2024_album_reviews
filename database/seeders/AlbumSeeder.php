@@ -37,7 +37,7 @@ class AlbumSeeder extends Seeder
                 // 'genreID' => 2, // Assuming genreID 1 exists in genres table
                 'tracklist' => '1. Introduction. , 2. Oscar Winning Tears. , 3. Hard Out Here. , 4. Black Mascara. , 5. Escapism. , 6. Mary Jane. , 7. The Thrill Is Gone. , 8. Ice Cream Man. , 9. Flip A Switch. , 10. Body Dysmorphia. , 11. Enviromental Anxiety. , 12. Five Star Hotels. (feat. Malahia) , 13. Worth It. , 14. Buss It Down. , 15. Fin.',
                 'duration' => '46min', // Total duration in minutes or seconds
-                'image' => 'public\images\My_21st_Century_Blues.png',
+                'image' => 'public/images/My_21st_Century_Blues.png',
                 'release_date' => Carbon::parse('2023-02-03'),
                 'listen_link' => 'https://open.spotify.com/album/3U8n8LzBx2o9gYXvvNq4uH?si=9SVcHUdFTOOxnCY3BdPQeQ',
                 'created_at' => Carbon::now(),
@@ -51,7 +51,7 @@ class AlbumSeeder extends Seeder
                 // 'genreID' => 1, // Assuming genreID 1 exists in genres table
                 'tracklist' => '1. SKINNY , 2. LUNCH , 3. CHIHIRO , 4. BIRDS OF A FEATHER , 5. WILDFLOWER , 6. THE GREATEST , 7. LAMOUR DE MA VIE , 8. THE DINER , 9. BITTERSUITE , 10. BLUE',
                 'duration' => '43min', // Total duration in minutes or seconds
-                'image' => 'https://upload.wikimedia.org/wikipedia/en/a/aa/Billie_Eilish_-_Hit_Me_Hard_and_Soft.png',
+                'image' => 'public/images/HIT_ME_HARD_AND_SOFT.png',
                 'release_date' => Carbon::parse('2024-05-17'),
                 'listen_link' => 'https://open.spotify.com/album/7aJuG4TFXa2hmE4z1yxc3n?si=OqialkJJRhqDZM96OzDlhw',
                 'created_at' => Carbon::now(),
@@ -65,7 +65,7 @@ class AlbumSeeder extends Seeder
                 // 'genreID' => 1, // Assuming genreID 1 exists in genres table
                 'tracklist' => '1. Flowers, 2. Jaded, 3. Rose Coloured Lenses, 4. Thousand Miles (feat. Brandi Carlile), 5. You, 6. Handstand, 7. River, 8. Violet Chemistry, 9. Muddy (feat. Sia), 10. Wildcard, 11. Island, 12. Wonder Woman, 13. Flowers (Demo)',
                 'duration' => '43min', // Total duration in minutes or seconds
-                'image' => 'https://upload.wikimedia.org/wikipedia/en/thumb/5/54/Miley_Cyrus_-_Endless_Summer_Vacation.png/220px-Miley_Cyrus_-_Endless_Summer_Vacation.png',
+                'image' => 'public/images/endless_summer_vacation.png',
                 'release_date' => Carbon::parse('2023-03-10'),
                 'listen_link' => 'https://open.spotify.com/album/5DvJgsMLbaR1HmAI6VhfcQ?si=VmxezEhfQFef4s6N2R-XHg',
                 'created_at' => Carbon::now(),

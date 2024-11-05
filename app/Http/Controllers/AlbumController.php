@@ -14,6 +14,7 @@ class AlbumController extends Controller
     public function index()
     {
         $albums = Album::all(); //fetch all albums
+        // dd($albums);
         return view('albums.index', compact('albums')); //return the view with albums
     }
 
@@ -34,7 +35,7 @@ class AlbumController extends Controller
             'title' => 'required',
             'artist' => 'required|max:100',
             'release_date' => 'required|date',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2080',
+            'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:2080',
         ]);
 
         if ($request->hasFile('image')) {

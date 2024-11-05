@@ -2,9 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Album extends Model
-{
-    protected $fillable = ['title', 'artist', 'image', 'release_date'];
+{   
+    use HasFactory;
+    protected $fillable = [
+        'title',
+        'artist',
+        'image',
+        'release_date'
+    ];
 }

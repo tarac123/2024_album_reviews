@@ -22,6 +22,22 @@
         @enderror
     </div>
 
+        <!-- Artist Input -->
+        <div class="mb-4">
+        <label for="artist" class="block text-sm text-gray-700">Artist</label>
+        <input
+            type="text"
+            name="artist"
+            id="artist"
+            value="{{ old('title', $album->title ?? '') }}"  
+            required
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" /> 
+        
+        @error('title')
+            <p class="text-sm text-red-600">{{ $message }}</p> 
+        @enderror
+    </div>
+
     <!-- Image Input -->
     <div class="mb-4">
         <label for="image" class="block text-sm font-medium text-gray-700">Album Cover Image</label>
@@ -34,6 +50,22 @@
 
         @error('image')
             <p class="text-sm text-red-600">{{ $message }}</p>
+        @enderror
+    </div>
+
+            <!-- Release Date Input -->
+            <div class="mb-4">
+        <label for="release_date" class="block text-sm text-gray-700">Release Date </label>
+        <input
+            type="date"
+            name="release_date"
+            id="release_date"
+            value="{{ old('title', $album->title ?? '') }}"  
+            required
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" /> 
+        
+        @error('title')
+            <p class="text-sm text-red-600">{{ $message }}</p> 
         @enderror
     </div>
 

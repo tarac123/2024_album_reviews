@@ -12,7 +12,8 @@ Route::get('/', function () {
 Route::get('/albums', [AlbumController::class, 'index'])->name('albums.index');
 Route::get('/albums/create', [AlbumController::class, 'create'])->name('albums.create');
 Route::get('/albums/{album}', [AlbumController::class, 'show'])->name('albums.show');
-Route::get('/albums', [AlbumController::class, 'store'])->name('albums.store');
+Route::post('/albums', [AlbumController::class, 'store'])->name('albums.store');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
