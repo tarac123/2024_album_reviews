@@ -12,6 +12,7 @@ class Album extends Model
         'title',
         'artist',
         'image',
-        'release_date'
+        'release_date',
+        'duration',
     ];
 }

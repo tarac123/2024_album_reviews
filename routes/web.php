@@ -13,6 +13,10 @@ Route::get('/albums', [AlbumController::class, 'index'])->name('albums.index');
 Route::get('/albums/create', [AlbumController::class, 'create'])->name('albums.create');
 Route::get('/albums/{album}', [AlbumController::class, 'show'])->name('albums.show');
 Route::post('/albums', [AlbumController::class, 'store'])->name('albums.store');
+Route::put('albums/{album}', [AlbumController::class, 'update'])->name('albums.update');
+Route::delete('/albums/{album}', [AlbumController::class, 'destroy'])->name('albums.destroy');
+
+
 
 
 Route::get('/dashboard', function () {

@@ -60,7 +60,7 @@ class AlbumController extends Controller
      */
     public function show(Album $album)
     {
-        //
+        return view('albums.show', compact('album'));
     }
 
     /**
@@ -68,7 +68,8 @@ class AlbumController extends Controller
      */
     public function edit(Album $album)
     {
-        //
+        // Return the edit view and pass the album
+        return view('albums.edit', compact('album'));
     }
 
     /**
@@ -76,7 +77,7 @@ class AlbumController extends Controller
      */
     public function update(Request $request, Album $album)
     {
-        //
+        return view('albums.update', compact('album'));
     }
 
     /**
@@ -84,6 +85,11 @@ class AlbumController extends Controller
      */
     public function destroy(Album $album)
     {
-        //
+        // Delete the album
+        $album->delete();
+    
+        // Redirect to the albums index with success message
+        return redirect()->route('albums.index')->with('success', 'Album deleted successfully!');
     }
+    
 }
