@@ -22,7 +22,7 @@
         @enderror
     </div>
 
-        <!-- Title Input -->
+        <!-- Tracklist Input -->
         <div class="mb-4">
         <label for="tracklist" class="block text-sm text-gray-700">tracklist</label>
         <input

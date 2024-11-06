@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('title');             // Album title
             $table->string('artist');            // Album artist
             // $table->unsignedBigInteger('genreID'); // Foreign Key: genreID (assuming this references a genres table)
-            $table->text('tracklist');           // List of tracks (could be text for flexibility)
-            $table->text('duration');         // Duration in seconds or minutes
+            $table->text('tracklist');          // List of tracks (could be text for flexibility)
+            $table->integer('duration');
             $table->string('image')->nullable(); // URL to the album's image
             $table->date('release_date');        // Release date of the album
             $table->string('listen_link')->nullable(); // Link to listen to the album
