@@ -25,7 +25,21 @@
                     </x-nav-link>
                 </div>
                 
-
+             <!-- Search bar -->
+             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <form action="{{ route('albums.search') }}" method="GET" class="flex items-center">
+                        <input 
+                            type="text" 
+                            name="query" 
+                            placeholder="Search albums, songs or artists..." 
+                            class="border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-sm w-64"
+                            required>
+                        <button type="submit" class="ml-2 px-3 py-2 bg-green-500 text-white rounded-md hover:bg-black hover:text-green-500">
+                            Search
+                        </button>
+                    </form>
+                </div>
+            </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">

@@ -1,4 +1,5 @@
-@props(['action', 'method'])
+@props(['action', 'method', 'album' => null])
+
 
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
     @csrf 
@@ -29,7 +30,7 @@
             type="text"
             name="tracklist"
             id="tracklist"
-            value="{{ old('title', $album->title ?? '') }}"  
+            value="{{ old('tracklist', $album->tracklist ?? '') }}"  
             required
             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" /> 
         
@@ -67,4 +68,11 @@
             {{ isset($album) ? 'Update Album' : 'Add Album' }}
         </x-primary-button>
     </div>
+
+        <!-- Success Message -->
+        @if (session('success'))
+        <x-alert-success>
+            {{ session('success') }}
+        </x-alert-success>
+    @endif
 </form>

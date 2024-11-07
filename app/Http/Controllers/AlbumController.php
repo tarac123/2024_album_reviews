@@ -36,23 +36,30 @@ class AlbumController extends Controller
             'artist' => 'required|max:100',
             'release_date' => 'required|date',
             'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:2080',
+            'tracklist' => 'nullable|max:3000', // Make tracklist optional
+            'duration'=>'required|integer',
+            'listen_link'=>'required|string'
         ]);
 
-        if ($request->hasFile('image')) {
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images/albums'), $imageName); // Save the image to the server
-        }
-
+            // Handle the image upload
+    if ($request->hasFile('image')) {
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('images/albums'), $imageName); // Save the image to the server
+    } else {
+        $imageName = 'default.png'; // Optional: specify a default image if none is uploaded
+    }
+    
         Album::create([
             'title' => $request->title,
             'artist' => $request->artist,
             'release_date' => $request->release_date,
-            'image' => $imageName, // Save the image name
-            'created_at' => now(),
-            'updated_at' => now()
+            'image' => $imageName,
+            'tracklist' => $request->tracklist ?? '', // Provide an empty string if tracklist is null
+            'duration'=> $request->duration,
+            'listen_link'=>$request->listen_link,
         ]);
-
-        return to_route('albums.index')->with('success', 'Album added successfully!');
+    
+        return redirect()->route('albums.index')->with('success', 'Album deleted successfully!');
     }
 
     /**
@@ -68,7 +75,6 @@ class AlbumController extends Controller
      */
     public function edit(Album $album)
     {
-        // Return the edit view and pass the album
         return view('albums.edit', compact('album'));
     }
 
@@ -77,9 +83,22 @@ class AlbumController extends Controller
      */
     public function update(Request $request, Album $album)
     {
-        return view('albums.update', compact('album'));
+        // Validate and update the album
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'artist' => 'required|string|max:255',
+            'tracklist' => 'required|string',
+            'duration' => 'required|integer',
+            'listen_link' => 'required|url',
+            'release_date' => 'required|date',
+            // Add other fields as necessary
+        ]);
+    
+        $album->update($validatedData);
+    
+        // Flash a success message to the session
+        return redirect()->route('albums.index')->with('success', 'Album updated successfully.');
     }
-
     /**
      * Remove the specified resource from storage.
      */
@@ -92,4 +111,20 @@ class AlbumController extends Controller
         return redirect()->route('albums.index')->with('success', 'Album deleted successfully!');
     }
     
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        
+        // Search in title, artist, and tracklist
+        $albums = Album::where('title', 'like', "%{$query}%")
+                      ->orWhere('artist', 'like', "%{$query}%")
+                      ->orWhere('tracklist', 'like', "%{$query}%")
+                      ->get();
+        
+                      return view('albums.search', [
+                        'albums' => $albums,
+                        'query' => $query
+                    ]);
+    }
+
 }

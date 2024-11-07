@@ -21,7 +21,7 @@ class AlbumSeeder extends Seeder
                 // 'albumID' => 1,
                 'artist' => 'Charli xcx',
                 // 'genreID' => 3, // Assuming genreID 1 exists in genres table
-                'tracklist' => '1. 360, 2. Club classics, 3. Sympathy is a knife, 4. I might say something stupid, 5. Talk talk, 6. Von Dutch, 7.Everything is romantic, 8. Rewind, 9. So I, 10. Girl, so confusing, 11. Apple, 12. B2b, 13. Mean girls, 14. I think about it all the time, 15. 365',
+                'tracklist' => '360,Club classics,Sympathy is a knife,I might say something stupid,Talk talk,Von Dutch,Everything is romantic,Rewind, So I,Girl so confusing,Apple, B2b,Mean girls,I think about it all the time,365',
                 'duration' => '41', // Total duration in minutes or seconds
                 'image' => 'brat.png',
                 'release_date' => Carbon::parse('2024-06-07'),
@@ -35,7 +35,7 @@ class AlbumSeeder extends Seeder
                 // 'albumID' => 2,
                 'artist' => 'RAYE',
                 // 'genreID' => 2, // Assuming genreID 1 exists in genres table
-                'tracklist' => '1. Introduction. , 2. Oscar Winning Tears. , 3. Hard Out Here. , 4. Black Mascara. , 5. Escapism. , 6. Mary Jane. , 7. The Thrill Is Gone. , 8. Ice Cream Man. , 9. Flip A Switch. , 10. Body Dysmorphia. , 11. Enviromental Anxiety. , 12. Five Star Hotels. (feat. Malahia) , 13. Worth It. , 14. Buss It Down. , 15. Fin.',
+                'tracklist' => 'Introduction. ,Oscar Winning Tears. ,Hard Out Here. ,Black Mascara. ,Escapism. ,Mary Jane. ,The Thrill Is Gone. ,Ice Cream Man. , Flip A Switch.,Body Dysmorphia.,Enviromental Anxiety.,Five Star Hotels. (feat. Malahia) ,Worth It. ,Buss It Down. ,Fin.',
                 'duration' => '46', // Total duration in minutes or seconds
                 'image' => 'My_21st_Century_Blues.png',
                 'release_date' => Carbon::parse('2023-02-03'),
@@ -49,7 +49,7 @@ class AlbumSeeder extends Seeder
                 // 'albumID' => 3,
                 'artist' => 'Billie Eilish',
                 // 'genreID' => 1, // Assuming genreID 1 exists in genres table
-                'tracklist' => '1. SKINNY , 2. LUNCH , 3. CHIHIRO , 4. BIRDS OF A FEATHER , 5. WILDFLOWER , 6. THE GREATEST , 7. LAMOUR DE MA VIE , 8. THE DINER , 9. BITTERSUITE , 10. BLUE',
+                'tracklist' => 'SKINNY ,LUNCH ,CHIHIRO ,BIRDS OF A FEATHER ,WILDFLOWER ,THE GREATEST ,LAMOUR DE MA VIE ,THE DINER , BITTERSUITE ,BLUE',
                 'duration' => '43', // Total duration in minutes or seconds
                 'image' => 'HIT_ME_HARD_AND_SOFT.png',
                 'release_date' => Carbon::parse('2024-05-17'),
@@ -63,7 +63,7 @@ class AlbumSeeder extends Seeder
                 // 'albumID' => 4,
                 'artist' => 'Miley Cyrus',
                 // 'genreID' => 1, // Assuming genreID 1 exists in genres table
-                'tracklist' => '1. Flowers, 2. Jaded, 3. Rose Coloured Lenses, 4. Thousand Miles (feat. Brandi Carlile), 5. You, 6. Handstand, 7. River, 8. Violet Chemistry, 9. Muddy (feat. Sia), 10. Wildcard, 11. Island, 12. Wonder Woman, 13. Flowers (Demo)',
+                'tracklist' => 'Flowers,Jaded,Rose Coloured Lenses,Thousand Miles (feat. Brandi Carlile),You,Handstand,River,Violet Chemistry, Muddy (feat. Sia),Wildcard,Island,Wonder Woman,Flowers (Demo)',
                 'duration' => '43', // Total duration in minutes or seconds
                 'image' => 'endless_summer_vacation.png',
                 'release_date' => Carbon::parse('2023-03-10'),
