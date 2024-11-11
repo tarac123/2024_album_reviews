@@ -26,6 +26,8 @@
                 </div>
                 
              <!-- Search bar -->
+
+             <!-- allows for searching album titles, songs and artists  -->
              <div class="hidden sm:flex sm:items-center sm:ml-6">
                     <form action="{{ route('albums.search') }}" method="GET" class="flex items-center">
                         <input 

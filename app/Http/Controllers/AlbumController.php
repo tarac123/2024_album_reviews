@@ -59,7 +59,7 @@ class AlbumController extends Controller
             'listen_link'=>$request->listen_link,
         ]);
     
-        return redirect()->route('albums.index')->with('success', 'Album deleted successfully!');
+        return redirect()->route('albums.index')->with('success', 'Album added successfully!');
     }
 
     /**

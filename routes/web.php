@@ -19,14 +19,6 @@ Route::put('/albums/{album}', [AlbumController::class, 'update'])->name('albums.
 Route::delete('/albums/{album}', [AlbumController::class, 'destroy'])->name('albums.destroy');
 
 
-
-
-
-
-
-
-
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
