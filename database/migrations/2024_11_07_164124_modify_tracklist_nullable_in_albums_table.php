@@ -9,15 +9,14 @@ class ModifyTracklistNullableInAlbumsTable extends Migration
     public function up()
     {
         Schema::table('albums', function (Blueprint $table) {
-            $table->text('tracklist')->nullable()->change(); // Use text for longer tracklists
+            $table->text('tracklist')->nullable()->change();
         });
     }
-    
+
     public function down()
     {
         Schema::table('albums', function (Blueprint $table) {
-            $table->string('tracklist', 1000)->nullable(false)->change(); // Revert back to 255 if rolled back
+            $table->text('tracklist')->nullable(false)->change();
         });
     }
-    
 }

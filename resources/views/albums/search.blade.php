@@ -34,9 +34,9 @@
                         <h3 class="font-semibold text-lg text-gray-800 hover:text-blue-600">
                             {{ $album->title }}
                         </h3>
-                        <p class="text-gray-600 mt-1">by {{ $album->artist }}</p>
-                        <p class="text-sm text-gray-500 mt-2">
-                            Released: {{ \Carbon\Carbon::parse($album->release_date)->format('M d, Y') }}
+                        <p class="text-green-500 mt-1">{{ $album->artist }}</p>
+                        <p class="text-sm text-gray-600 mt-2">
+                            Released: {{ \Carbon\Carbon::parse($album->release_date)->format('d M Y') }}
                         </p>
                     </div>
                         </a>

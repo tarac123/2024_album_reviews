@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('albums', function (Blueprint $table) {
-            $table->id('albumID');              // Primary Key: albumID
-            $table->string('title');             // Album title
-            $table->string('artist');            // Album artist
+            $table->id('album_id');                // Primary Key: albumID
+            $table->string('title');               // Album title
+            $table->string('artist');              // Album artist
             // $table->unsignedBigInteger('genreID'); // Foreign Key: genreID (assuming this references a genres table)
-            $table->string('tracklist')->default('')->change();       // List of tracks (could be text for flexibility)
+            $table->string('tracklist')->default(''); // List of tracks (could be text for flexibility)
             $table->integer('duration');
-            $table->string('image')->nullable(); // URL to the album's image
-            $table->date('release_date');        // Release date of the album
+            $table->string('image')->nullable();   // URL to the album's image
+            $table->date('release_date');          // Release date of the album
             $table->string('listen_link')->nullable(); // Link to listen to the album
             $table->timestamps();
     
@@ -37,3 +37,4 @@ return new class extends Migration
         Schema::dropIfExists('albums');
     }
 };
+
