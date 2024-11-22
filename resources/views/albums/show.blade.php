@@ -65,6 +65,38 @@
                             @endforeach
                         </ul>
 
+                    <!-- reviews -->
+            <h4 class="font-semibold text-md mt-8">Reviews</h4>
+                @if($album->reviews->isEmpty())
+                        <p class="text-gray-600">No reviews yet.</p>
+                    @else
+                        <ul class="mt-4 space-y-4">
+                            @foreach($album->reviews as $review)
+                                <li class="bg-gray-100 p-4 rounded-lg">
+                                    <p class="font-semibold">{{ $review->user->name }} ({{ $review->created_at->format('d M, Y') }}) </p>
+                                    <p>Rating: {{ $review->rating }} / 5 </p>
+                                    <p> {{ $review->comment }} </p>
+
+                                @if ($review->user->is(auth()->user()) || auth()->user()->role === 'admin')
+
+                                    <a href="{{ route('reviews.edit', $review) }}" class="bg-yellow-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
+                                        {{ __('Edit Review')}}
+                                    </a>
+                                    <form method="POST" action="{{ route('reviews.destroy', $review) }}">
+                                        @crsf 
+                                        @method('delete')
+                                        <x-danger-button :href="route('reviews.destroy', $review)"
+                                                        onclick="event.preventDefault(); this.closest('form').submit();">
+                                            {{ __('Delete Review') }}
+                                        </x-danger-button>
+                                    </form>
+                                @endif
+                            </li>
+                        @endforeach
+                        </ul>
+                @endif
+
+
                         <!-- Action Buttons -->
                          <!-- edit button -->
                         <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 mt-6">

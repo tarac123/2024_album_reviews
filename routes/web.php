@@ -20,6 +20,11 @@ Route::get('/albums/{album}/edit', [AlbumController::class, 'edit'])->name('albu
 Route::put('/albums/{album}', [AlbumController::class, 'update'])->name('albums.update');
 Route::delete('/albums/{album}', [AlbumController::class, 'destroy'])->name('albums.destroy');
 
+Route::resource('reviews', ReviewController::class);
+
+Route::post('albums/{album}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

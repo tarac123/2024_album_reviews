@@ -6,19 +6,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Album extends Model
-
-
-{   
-
-    public function getRouteKeyName()
 {
-    return 'album_id';
-}
-
     use HasFactory;
 
-    protected $primaryKey = 'album_id'; 
+    /**
+     * Specify the primary key.
+     */
+    protected $primaryKey = 'album_id';
 
+    /**
+     * Specify the route key name for model binding.
+     */
+    public function getRouteKeyName()
+    {
+        return 'album_id';
+    }
+
+    /**
+     * Mass-assignable attributes.
+     */
     protected $fillable = [
         'title',
         'artist',
@@ -26,7 +32,15 @@ class Album extends Model
         'release_date',
         'duration',
         'listen_link',
-        'tracklist'
+        'tracklist',
     ];
-}
 
+    /**
+     * Relationship with reviews.
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'album_id', 'album_id');
+    }
+    
+}

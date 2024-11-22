@@ -22,7 +22,10 @@ class AlbumController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    {   
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('albums.index')->with('error', 'Access denied');
+        }
         return view('albums.create');
     }
 
