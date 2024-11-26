@@ -22,7 +22,12 @@ Route::delete('/albums/{album}', [AlbumController::class, 'destroy'])->name('alb
 
 Route::resource('reviews', ReviewController::class);
 
-Route::post('albums/{album}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::post('/albums/{album}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::get('/albums/{album}/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
+
+
+
+
 
 
 

@@ -31,7 +31,7 @@
                         >
                         </div>
                     <div class="p-4">
-                        <h3 class="font-semibold text-lg text-gray-800 hover:text-blue-600">
+                        <h3 class="font-semibold text-lg text-gray-800">
                             {{ $album->title }}
                         </h3>
                         <p class="text-green-500 mt-1">{{ $album->artist }}</p>

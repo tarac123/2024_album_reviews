@@ -1,42 +1,40 @@
-<form action="{{ $action }}" method="POST">
-    @csrf
-    @if ($method !== 'POST')
+@props(['action', 'method', 'album', 'review'])
+
+<form action="{{ $action }}" method="POST" enctype="multipart/form-data">
+    @csrf 
+    @if($method === 'PUT' || $method === 'PATCH')
         @method($method)
     @endif
-
-    @if($method === 'POST')
-        <input type="hidden" name="album_id" value="{{ $album->id }}">
-    @endif
-
-    <!-- Rating Field -->
     <div class="mb-4">
-        <label for="rating" class="block text-sm font-medium text-gray-700">Rating</label>
-        <select id="rating" name="rating" class="block w-full mt-1" required>
-            @for ($i = 1; $i <= 5; $i++)
-                <option value="{{ $i }}" {{ (old('rating', $review->rating ?? '') == $i) ? 'selected' : '' }}>
-                    {{ $i }}
-                </option>
-            @endfor
-        </select>
-        @error('rating')
-            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-        @enderror
+        <!-- dropdown rating box -->
+        <label for = "rating" class="block text-sm font-medium text-gray-700">Rating</label>
+        <input
+            type="text"
+            name="rating"
+            id="rating"
+            value="{{ old('rating', $review->rating ?? '') }}"
+            required
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+            />
+            @error('rating')
+                <p class="text-sm text-red-600"> {{ $message }} </p>
+            @enderror
     </div>
-
-    <!-- Comment Field -->
     <div class="mb-4">
         <label for="comment" class="block text-sm font-medium text-gray-700">Comment</label>
-        <textarea id="comment" name="comment" rows="4" 
-                  class="block w-full mt-1 border-gray-300 rounded-md" required>{{ old('comment', $review->comment ?? '') }}</textarea>
+        <input
+        type="text"
+        name="comment"
+        id="comment"
+        value="{{ old ('comment', $review->comment ?? '') }}"
+        required
+        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+        />
         @error('comment')
-            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+            <p class="text-sm text-red-600"> {{ $message }}</p>
         @enderror
     </div>
-
-    <!-- Submit Button -->
-    <div class="mt-4">
-        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-            {{ $buttonText }}
-        </button>
-    </div>
+    <x-primary-button>
+        {{ isset($review) ? 'Update Review' : 'Save Review' }}
+</x-primary-button>
 </form>
