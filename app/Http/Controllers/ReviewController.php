@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Storage;
 class ReviewController extends Controller
 {
 
-    public function create(Album $album)
+    public function create()
     {
-        return view('reviews.create', compact('album'));
+        return view('reviews.create'); // Adjust to match your setup
     }
     /**
      * Edit a review.

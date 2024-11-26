@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\ReviewController;
 
 
 Route::get('/', function () {
@@ -22,14 +23,8 @@ Route::delete('/albums/{album}', [AlbumController::class, 'destroy'])->name('alb
 
 Route::resource('reviews', ReviewController::class);
 
-Route::post('/albums/{album}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
-Route::get('/albums/{album}/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
-
-
-
-
-
-
+Route::post('albums/{album}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

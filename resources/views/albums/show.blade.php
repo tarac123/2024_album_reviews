@@ -68,9 +68,10 @@
                     <!-- reviews -->
             <h4 class="font-semibold text-md mt-8">Reviews</h4>
                     <!-- Add Review Button -->
-<x-nav-link :href="route('reviews.create', $album)" :active="request()->routeIs('reviews.create')">
-    {{ __('Add a review') }}
-</x-nav-link>
+                    <x-nav-link :href="route('reviews.create', $album)" :active="request()->routeIs('reviews.create')">
+                    {{ __('Add a review') }}
+                    </x-nav-link>
+                    
                 @if($album->reviews->isEmpty())
                         <p class="text-gray-600">No reviews yet.</p>
                     @else
