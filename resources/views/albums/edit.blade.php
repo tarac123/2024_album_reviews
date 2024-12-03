@@ -9,7 +9,7 @@
         <h1 class="text-2xl font-semibold mb-4">Edit Album</h1>
 
         <x-album-form 
-            :action="route('albums.update', $album->album_id)"
+            :action="route('albums.update', $album->id)"
             method="PUT"
             :album="$album"
         />

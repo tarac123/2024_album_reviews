@@ -21,7 +21,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach($albums as $album)
                             <!-- Album Card Component -->
-                            <a href="{{ route('albums.show', $album->album_id) }}" class="block">
+                            <a href="{{ route('albums.show', $album->id) }}" class="block">
                                 <x-album-card 
                                     :title="$album->title"
                                     :image="$album->image"

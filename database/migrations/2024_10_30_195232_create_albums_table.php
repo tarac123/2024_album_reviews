@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('albums', function (Blueprint $table) {
-            $table->id('album_id');                // Primary Key: albumID
+            $table->id('id');                // Primary Key: albumID
             $table->string('title');               // Album title
             $table->string('artist');              // Album artist
             // $table->unsignedBigInteger('genreID'); // Foreign Key: genreID (assuming this references a genres table)

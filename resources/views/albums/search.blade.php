@@ -22,7 +22,7 @@
                         <!-- displays the returned album results (album title, aritst and release date) -->
                     @foreach($albums as $album)
                     <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
-                        <a href="{{ route('albums.show', $album->album_id) }}" class="block">
+                        <a href="{{ route('albums.show', $album->id) }}" class="block">
                             <div class="aspect-w-1 aspect-h-1">
                         <img 
                             src="{{ asset('images/albums/' . $album->image) }}" 

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Album;
+use App\Models\Genre;
 use Carbon\Carbon;
 
 class AlbumSeeder extends Seeder
@@ -15,7 +16,8 @@ class AlbumSeeder extends Seeder
     public function run(): void
     {
         $currentTimestamp = Carbon::now();
-        Album::insert([
+        $albums = 
+        [
             [
                 'title' => 'BRAT',
                 'artist' => 'Charli xcx',
@@ -93,6 +95,20 @@ class AlbumSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ],
-        ]);
+        ];
+
+        foreach ($albums as $albumData)
+        {
+            // insert the album into the album table
+            $album = Album::create(array_merge($albumData, ['created_at' => $currentTimestamp, 'updated_at' => $currentTimestamp]));
+
+            // randomly select two genres 
+            // so GenreSeeder must be excecuted before AlbumSeeder
+            $genres = Genre::inRandomOrder()->take(2)->pluck('id');
+
+            // attach genres to albums
+            // laravels attach() function inserts a row in the pivot table indicating that this album is in this genre
+            $album->genres()->attach($genres);
+        }
     }
 }

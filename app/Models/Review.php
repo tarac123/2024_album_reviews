@@ -14,16 +14,16 @@ class Review extends Model
     protected $fillable = [
         'rating',
         'comment',
-        'album_id',
+        'id',
         'user_id',
     ];
     
     public function album()
     {
-        // Fix: Remove the redundant album_id in the relationship
+        // Fix: Remove the redundant id in the relationship
         return $this->belongsTo(Album::class);
         // Or if you need to specify the keys explicitly:
-        // return $this->belongsTo(Album::class, 'album_id');
+        // return $this->belongsTo(Album::class, 'id');
     }
     
     public function user()

@@ -17,6 +17,10 @@ class DatabaseSeeder extends Seeder
             AlbumSeeder::class,
         ]);
 
+        $this->call([
+            GenreSeeder::class,
+        ]);
+
         // User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',

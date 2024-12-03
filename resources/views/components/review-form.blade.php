@@ -1,10 +1,14 @@
 @props(['action', 'method', 'album', 'review'])
 
-<form action="{{ $action }}" method="POST" enctype="multipart/form-data">
+
+
+<form action="{{ route ('reviews.store', $album)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @if($method === 'PUT' || $method === 'PATCH')
         @method($method)
     @endif
+
+  
     <div class="mb-4">
         <label for="rating" class="block text-sm font-medium text-gray-700">Rating</label>
         <select 
@@ -37,7 +41,9 @@
             <p class="text-sm text-red-600">{{ $message }}</p>
         @enderror
     </div>
-    <x-primary-button>
-        {{ $review ? 'Update Review' : 'Save Review' }}
-    </x-primary-button>
+    <button type="submit">
+    Submit
+    </button>
+
+
 </form>

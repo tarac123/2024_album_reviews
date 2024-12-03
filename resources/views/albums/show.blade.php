@@ -4,7 +4,12 @@
             {{ __('Album Details') }}
         </h2>
     </x-slot>
-    
+            <!-- Success Message -->
+            @if (session('success'))
+        <x-alert-success>
+            {{ session('success') }}
+        </x-alert-success>
+        @endif
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -67,8 +72,9 @@
 
                     <!-- reviews -->
             <h4 class="font-semibold text-md mt-8">Reviews</h4>
+                    
                     <!-- Add Review Button -->
-                    <x-nav-link :href="route('reviews.create', $album)" :active="request()->routeIs('reviews.create')">
+                    <x-nav-link :href="route('reviews.create', $album)" >
                     {{ __('Add a review') }}
                     </x-nav-link>
                     
@@ -105,12 +111,12 @@
                         <!-- Action Buttons -->
                          <!-- edit button -->
                         <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 mt-6">
-                            <a href="{{ route('albums.edit', $album->album_id) }}" 
+                            <a href="{{ route('albums.edit', $album->id) }}" 
                                class="inline-flex justify-center items-center text-black-600 bg-green-500 hover:bg-green-500 hover:text-white font-bold py-2 px-6 rounded-full transition duration-200">
                                 Edit
                             </a>
                             <!-- delete button -->
-                            <form action="{{ route('albums.destroy', $album->album_id) }}" method="POST"  
+                            <form action="{{ route('albums.destroy', $album->id) }}" method="POST"  
                                   onsubmit="return confirm('Are you sure you want to delete this album?');"> <!--  gives a confirmation message after pressing delete -->
                                 @csrf
                                 @method('DELETE')

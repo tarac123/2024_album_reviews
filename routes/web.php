@@ -22,9 +22,14 @@ Route::put('/albums/{album}', [AlbumController::class, 'update'])->name('albums.
 Route::delete('/albums/{album}', [AlbumController::class, 'destroy'])->name('albums.destroy');
 
 Route::resource('reviews', ReviewController::class);
+Route::get('/albums/{album}/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
+Route::post('/albums/{album}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::get('/reviews/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
+Route::get('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
 
-Route::post('albums/{album}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
-Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
+Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+
+Route::resource('genres', GenreController::class)->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
