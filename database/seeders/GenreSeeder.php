@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Author;
 use App\Models\Genre;
 
 class GenreSeeder extends Seeder
@@ -33,7 +32,7 @@ class GenreSeeder extends Seeder
             ['genre_name' => 'Electronic'],
             ['genre_name' => 'Funk'],
             ['genre_name' => 'Reggae'],
-            ['genre_name' => 'Reggae'],
+            
         ]);
     }
 }

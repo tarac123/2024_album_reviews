@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,6 +17,13 @@ class AlbumController extends Controller
         $albums = Album::all(); //fetch all albums
         // dd($albums);
         return view('albums.index', compact('albums')); //return the view with albums
+    }
+
+    public function genre(Genre $genre)
+    {   
+        dd($genre);
+        $albums = $genre->albums;
+        return view('albums.genre', compact('albums', 'genre'));
     }
 
     /**

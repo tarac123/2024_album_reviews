@@ -2,7 +2,7 @@
 
 
 
-<form action="{{ route ('reviews.store', $album)}}" method="POST" enctype="multipart/form-data">
+<form action="{{$action}}" method="POST" enctype="multipart/form-data">
     @csrf
     @if($method === 'PUT' || $method === 'PATCH')
         @method($method)

@@ -13,12 +13,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            AlbumSeeder::class,
-        ]);
-
+  
         $this->call([
             GenreSeeder::class,
+        ]);
+        
+        $this->call([
+            AlbumSeeder::class,
         ]);
 
         // User::factory()->create([

@@ -20,7 +20,7 @@ class CreateReviewsTable extends Migration
             $table->timestamps(); // Created at and updated at
 
             // Define foreign keys
-            $table->foreign('id')->references('id')->on('albums')->onDelete('cascade');
+            $table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

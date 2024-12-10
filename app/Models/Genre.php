@@ -14,6 +14,6 @@ class Genre extends Model
 
     public function albums()
     {
-        return $this->bleongsToMany(Album::class);
+        return $this->belongsToMany(Album::class, 'album_genre', 'genre_id', 'album_id');
     }
 }

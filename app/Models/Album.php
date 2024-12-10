@@ -41,12 +41,13 @@ class Album extends Model
      */
     public function reviews()
     {
-        return $this->hasMany(Review::class, 'id', 'id');
+        return $this->hasMany(Review::class);
     }
     
     public function genres()
     {
-        return $this->belongsToMany(Genre::class);
+        return $this->belongsToMany(Genre::class, 'album_genre', 'album_id', 'genre_id');
     }
+    
     
 }

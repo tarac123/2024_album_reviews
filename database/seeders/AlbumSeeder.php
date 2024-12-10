@@ -73,7 +73,7 @@ class AlbumSeeder extends Seeder
             [
                 'title' => 'Kansas Anymore',
                 'artist' => 'Role Model',
-                // 'genreID' => 1, // Assuming genreID 1 exists in genres table
+                // 'genre_id' => 1, 
                 'tracklist' => 'Writings On The Wall, Look At That Woman , Scumbag, Oh Gemini, Frances, Superglue, The Dinner, Deeply Still In Love, Slut Era Interlude, So Far Gone (feat. Lizzy McAlpine), Slipfast, Compromise, Something Somehow Someday',
                 'duration' => '41', // Total duration in minutes or seconds
                 'image' => 'kansas_anymore.webp',
@@ -87,7 +87,7 @@ class AlbumSeeder extends Seeder
             'title' => 'Melophobia',
             'artist' => 'Cage The Elephant',
             // 'genreID' => 1, // Assuming genreID 1 exists in genres table
-            'tracklist' => 'Spiderhead, Come a Little Closer , Telescope, Its Just Forever (featuring Alison Mosshart), Take It or Leave It, Halo, Black Widow, Hypocrite,Teeth, Cigarette Daydreams',
+            'tracklist' => 'Spiderhead, Come a Little Closer , Telescope, Its Just Forever (featuring Alison Mosshart), Take It or Leave It, Halo, Black Widow, Hypocrite, Teeth, Cigarette Daydreams',
             'duration' => '38', // Total duration in minutes or seconds
             'image' => 'melophobia.jpeg',
             'release_date' => Carbon::parse('2013-10-08'),

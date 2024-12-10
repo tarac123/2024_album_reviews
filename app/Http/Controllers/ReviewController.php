@@ -17,7 +17,7 @@ class ReviewController extends Controller
     public function store(Request $request, Album $album)
     {
 
-        //dd($album->id);
+       // dd($album->id);
 
         $validated = $request->validate([
             'rating' => 'required|integer|min:1|max:5',
@@ -26,6 +26,7 @@ class ReviewController extends Controller
     
         $album->reviews()->create([
             'user_id' => auth()->id(),
+            'album_id' => $album->id,
             'rating' => $validated['rating'],
             'comment' => $validated['comment'],
         ]);

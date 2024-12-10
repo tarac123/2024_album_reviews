@@ -73,11 +73,11 @@
                     <!-- reviews -->
             <h4 class="font-semibold text-md mt-8">Reviews</h4>
                     
-                    <!-- Add Review Button -->
-                    <x-nav-link :href="route('reviews.create', $album)" >
-                    {{ __('Add a review') }}
-                    </x-nav-link>
-                    
+            <x-nav-link 
+    class="inline-flex justify-center items-center text-white bg-green-500 hover:bg-green-500 hover:text-white font-bold rounded-full transition duration-200" 
+    :href="route('reviews.create', $album)">
+    {{ __('Add a review') }}
+</x-nav-link> 
                 @if($album->reviews->isEmpty())
                         <p class="text-gray-600">No reviews yet.</p>
                     @else
@@ -89,18 +89,44 @@
                                     <p> {{ $review->comment }} </p>
 
                                 @if ($review->user->is(auth()->user()) || auth()->user()->role === 'admin')
-   
-                                    <a href="{{ route('reviews.edit', $review) }}" class="bg-yellow-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
+
+                                <div class="relative">
+                                    <x-dropdown>
+                                        <x-slot name="trigger">
+                                            <button class="absolute top-0 right-0">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                                </svg>
+                                            </button>
+                                        </x-slot>
+                                        <x-slot name="content">
+                                            <x-dropdown-link :href="route('reviews.edit', $review)">
+                                                {{ __('Edit') }}
+                                            </x-dropdown-link>
+                                            <form method="POST" action="{{ route('reviews.destroy', $review) }}">
+                                                @csrf
+                                                @method('delete')
+                                                <x-dropdown-link :href="route('reviews.destroy', $review)" onclick="event.preventDefault(); this.closest('form').submit();">
+                                                    {{ __('Delete') }}
+                                                </x-dropdown-link>
+                                            </form>
+                                        </x-slot>
+                                    </x-dropdown>
+                                </div>
+
+
+                                    <!-- <a href="{{ route('reviews.edit', $review) }}" class="bg-yellow-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
                                         {{ __('Edit Review')}}
-                                    </a>
-                                    <form method="POST" action="{{ route('reviews.destroy', $review) }}">
+                                    </a> -->
+                                    <!-- <form method="POST" action="{{ route('reviews.destroy', $review) }}">
                                         @csrf 
                                         @method('delete')
                                         <x-danger-button :href="route('reviews.destroy', $review)"
                                                         onclick="event.preventDefault(); this.closest('form').submit();">
                                             {{ __('Delete Review') }}
                                         </x-danger-button>
-                                    </form>
+                                    </form> -->
+
                                 @endif
                             </li>
                         @endforeach
