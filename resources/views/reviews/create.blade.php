@@ -12,13 +12,13 @@
                 <div class="p-6 text-gray-900">
                     <h3 class="font-semibold text-lg mb-6">Your review</h3>
 
-
+                    <!-- uses the review form -->
                     <x-review-form 
-    :action="route('reviews.store', $album)" 
-    method="POST" 
-    :album="$album" 
-    :review="null"
-/>
+                    :action="route('reviews.store', $album)" 
+                    method="POST" 
+                    :album="$album" 
+                    :review="null"
+                    />
 
                 </div>
             </div>
