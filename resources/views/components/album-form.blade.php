@@ -120,7 +120,7 @@
 
     <!-- Submit Button -->
     <div>
-    <button type="submit" class="inline-flex justify-center items-center text-black-600 bg-green-500 hover:bg-green-500 hover:text-white font-bold py-2 px-6 rounded-full transition duration-200"">
+    <button type="submit" class="inline-flex justify-center items-center text-white bg-green-500 hover:bg-green-500 hover:text-black font-bold py-2 px-6 rounded-full transition duration-200"">
     {{ isset($album) ? 'Update Album' : 'Add Album' }}
     </button>
     </div>

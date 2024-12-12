@@ -71,17 +71,18 @@
                         </ul>
 
                     <!-- reviews -->
-            <h4 class="font-semibold text-md mt-8">Reviews</h4>
+                <h4 class="font-semibold text-xl mt-8 mb-6 ">Reviews</h4>
                     
-            <x-nav-link 
-    class="inline-flex justify-center items-center text-white bg-green-500 hover:bg-green-500 hover:text-white font-bold rounded-full transition duration-200" 
+                <x-nav-link 
+    class="text-green-500 text-xl hover:text-green-700" 
     :href="route('reviews.create', $album)">
     {{ __('Add a review') }}
-</x-nav-link> 
+</x-nav-link>
+
                 @if($album->reviews->isEmpty())
-                        <p class="text-gray-600">No reviews yet.</p>
+                        <p class="text-gray-600 mb-6 mt-6 bg-gray-100 rounded-lg h-12 p-3">No reviews yet.</p>
                     @else
-                        <ul class="mt-4 space-y-4">
+                        <ul class="mt-4 space-y-4 mb-6">
                             @foreach($album->reviews as $review)
                                 <li class="bg-gray-100 p-4 rounded-lg">
                                     <p class="font-semibold">{{ $review->user->name }}  </p>
@@ -113,20 +114,6 @@
                                         </x-slot>
                                     </x-dropdown>
                                 </div>
-
-
-                                    <!-- <a href="{{ route('reviews.edit', $review) }}" class="bg-yellow-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
-                                        {{ __('Edit Review')}}
-                                    </a> -->
-                                    <!-- <form method="POST" action="{{ route('reviews.destroy', $review) }}">
-                                        @csrf 
-                                        @method('delete')
-                                        <x-danger-button :href="route('reviews.destroy', $review)"
-                                                        onclick="event.preventDefault(); this.closest('form').submit();">
-                                            {{ __('Delete Review') }}
-                                        </x-danger-button>
-                                    </form> -->
-
                                 @endif
                             </li>
                         @endforeach
@@ -136,6 +123,7 @@
 
                         <!-- Action Buttons -->
                          <!-- edit button -->
+                         @if(auth()->user()->role === 'admin')
                         <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 mt-6">
                             <a href="{{ route('albums.edit', $album->id) }}" 
                                class="inline-flex justify-center items-center text-black-600 bg-green-500 hover:bg-green-500 hover:text-white font-bold py-2 px-6 rounded-full transition duration-200">
@@ -151,6 +139,7 @@
                                     Delete
                                 </button>
                             </form>
+                            @endif
                             <!-- return to index button -->
                             <a href="{{ route('albums.index') }}" 
                                class="inline-flex justify-center items-center text-green-500 hover:text-green-700 font-bold py-2 px-6 rounded-full border border-green-500 hover:border-green-700 transition duration-200">

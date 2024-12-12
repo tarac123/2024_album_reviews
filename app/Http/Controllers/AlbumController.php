@@ -93,21 +93,22 @@ class AlbumController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Album $album)
-    {   
-        
+    {
+        // Validate the input data
         $validated = $request->validate([
-            'genre_id' => 'required|exists:genres,id', // Ensure valid genre ID
+            'title' => 'required|string|max:255',
+            'artist' => 'required|string|max:255',
+            'tracklist' => 'nullable|string',
+            'duration' => 'nullable|numeric',
+            'listen_link' => 'nullable|url',
+            'image' => 'nullable|image', // If you're allowing an image upload
         ]);
     
-        // Debugging to confirm album ID
-        if (!$album->id) {
-            return back()->withErrors(['error' => 'Invalid album.']);
-        }
+        // Update the album with validated data
+        $album->update($validated);
     
-        // Attach the genre to the album
-        $album->genres()->syncWithoutDetaching([$validated['genre_id']]);
-    
-        return redirect()->route('albums.index')->with('success', 'Genre updated successfully.');
+        // Redirect to the album show page
+        return redirect()->route('albums.show', $album->id)->with('success', 'Album updated successfully.');
     }
     
     /**

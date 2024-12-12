@@ -17,12 +17,6 @@ Route::get('/albums/search', [AlbumController::class, 'search'])->name('albums.s
 Route::get('/albums/genres', [GenreController::class, 'index'])->name('albums.genres');
 Route::get('/albums/{album}', [AlbumController::class, 'show'])->name('albums.show');
 
-
-
-
-
-
-
 Route::post('/albums', [AlbumController::class, 'store'])->name('albums.store');
 Route::get('/albums/{album}/edit', [AlbumController::class, 'edit'])->name('albums.edit');
 Route::put('/albums/{album}', [AlbumController::class, 'update'])->name('albums.update');
@@ -41,7 +35,7 @@ Route::get('/genres/{genre}', [GenreController::class, 'show'])->name('genres.sh
 // Route::get('/albums/{album}/genres/create', [GenreController::class, 'create'])->name('genres.create');
 // Route::post('/albums/{album}/genres', [GenreController::class, 'store'])->name('genres.store');
 Route::get('/genres/{genre}/edit', [GenreController::class, 'edit'])->name('genres.edit');
-
+Route::delete('/genres/{genre}', [GenreController::class, 'destroy'])->name('genres.destroy');
 
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 

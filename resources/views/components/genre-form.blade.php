@@ -43,7 +43,7 @@
     <!-- Submit Button -->
     <div>
         <button type="submit" class="inline-flex justify-center items-center text-white bg-green-500 hover:bg-green-600 font-bold py-2 px-6 rounded-full transition duration-200">
-            Add Genre
+            Update
         </button>
     </div>
 </form>

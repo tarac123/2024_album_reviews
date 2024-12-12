@@ -20,15 +20,16 @@
                     {{ __('View All Albums') }} 
                 </x-nav-link>
 
-                <x-nav-link :href="route('albums.genres')" :active="request()->routeIs('albums.genres')">
-                    {{ __('Browse by genre') }} 
-                </x-nav-link>
                 <!-- admin only links -->
                 @if(auth()->user()->role === 'admin')
                     <x-nav-link :href="route('albums.create')" :active="request()->routeIs('albums.create')">
                         {{ __('Add New Album') }} 
                     </x-nav-link>
                 @endif
+
+                <x-nav-link :href="route('albums.genres')" :active="request()->routeIs('albums.genres')">
+                    {{ __('Browse by genre') }} 
+                </x-nav-link>
             </div>
 
 

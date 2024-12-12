@@ -19,10 +19,11 @@
                     <!-- Genre Title and Edit Button -->
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="font-bold text-3xl text-green-500">{{ $genre->_name }}</h3>
+                        @if(auth()->user()->role === 'admin')
                         <x-dropdown-link :href="route('genres.edit', $genre->id)" class="text-blue-500 hover:underline font-semibold">
                             {{ __('Edit') }}
                         </x-dropdown-link>
-
+                        @endif
                     </div>
 
                     <!-- Check if there are albums -->
@@ -36,7 +37,7 @@
                         <img src="{{ asset('/images/albums/'.$album->image) }}" alt="{{ $album->title }}" class="w-full h-auto" />
                         <h4 class="font-bold text-lg mt-4">{{ $album->title }}</h4>
                         <p>Artist: {{ $album->artist }}</p>
-                        <p>Release Date: {{ $album->release_date }}</p>
+                        <p>Released: {{ \Carbon\Carbon::parse($album->release_date)->format('d M Y') }}</p>
                         <a href="{{ route('albums.show', $album->id) }}" class="text-green-500 font-bold hover:underline mt-4 block">
                             View Details
                         </a>
