@@ -14,27 +14,45 @@ class GenreController extends Controller
     public function index()
     {
         $genres = Genre::all(); // Fetch all genres
-        return view('genres.index', compact('genres'));
+        return view('genres.index', compact('genres')); // Pass genres to the view
     }
+    
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('genres.create');
+        // Fetch all genres, so you can pass them to the view (if needed)
+        $genres = Genre::all();
+    
+        // Fetch all albums to associate with the genre
+        $albums = Album::all();
+    
+        // Passing genres and albums to the view
+        return view('genres.create', compact('genres', 'albums'));
     }
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|unique:genres|max:255',
-            
+        // Validate the input data
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'albums' => 'nullable|array', // Albums should be an array
+            'albums.*' => 'exists:albums,id', // Each album ID should exist in the albums table
         ]);
     
-        Genre::create($request->all());
+        // Create the new genre
+        $genre = Genre::create([
+            'name' => $validated['name'],
+        ]);
+    
+        // Attach the selected albums to the genre (if any)
+        if (isset($validated['albums'])) {
+            $genre->albums()->attach($validated['albums']);
+        }
+    
         return redirect()->route('genres.index')->with('success', 'Genre created successfully.');
     }
 
@@ -54,12 +72,11 @@ class GenreController extends Controller
      */
     public function edit(Genre $genre)
     {
- 
-        $albums = Album::all();
-       
-        $genreAlbums = $genre->albums->pluck('id')->toArray();
-        // return redirect(route('categories.edit'));
-        return view('genres.edit', compact('genre', 'albums', 'genreAlbums'));
+        $genres = Genre::all(); // Retrieve all genres
+        $albums = Album::all(); // Retrieve all albums
+        $genreAlbums = $genre->albums->pluck('id')->toArray(); // Get IDs of associated albums
+    
+        return view('genres.edit', compact('genre', 'genres', 'albums', 'genreAlbums'));
     }
 
     /**
@@ -67,22 +84,20 @@ class GenreController extends Controller
      */
     public function update(Request $request, Genre $genre)
     {
+
         $validated = $request->validate([
-            'name' => 'required|string|max:1000',
- 
-           
+            'name' => 'required|string|max:255',
+            'albums' => 'nullable|array',
+            'albums.*' => 'exists:albums,id',
         ]);
-        $genre->update($validated);
- 
-        $albums = $request->albums ?? [];
- 
-        $genre->albums()->detach();
-       
-        if (!empty($albums)) {
-            $genre->albums()->attach($albums);
-        }
-        return redirect()->route('genres.index')->with('success', 'Review updated Successfully');
+    
+     
+    
+        $genre->albums()->sync($validated['albums'] ?? []);
+    
+        return redirect()->route('genres.index')->with('success', 'Genre updated successfully.');
     }
+    
     
 
     /**

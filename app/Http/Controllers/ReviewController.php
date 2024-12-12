@@ -41,7 +41,7 @@ class ReviewController extends Controller
     {
         // Check if the user is authorized to edit the review
         if (auth()->user()->id !== $review->user_id && auth()->user()->role !== 'admin') {
-            return redirect()->route('albums.index')->with('error', 'Access denied.');
+            return redirect()->route('genre.show')->with('error', 'Access denied.');
         }
 
         // Return the edit view with the review
@@ -67,30 +67,16 @@ class ReviewController extends Controller
         // Update the review with validated data
         $review->update($request->only(['rating', 'comment']));
     
-        // Redirect back to the album page with a success message
-        return redirect()->route('albums.show', $review->id)
+        // Redirect back to the associated album's show page with a success message
+        return redirect()->route('albums.show', $review->album_id)
                          ->with('success', 'Review updated successfully.');
     }
+    
 
-    // public function store(Request $request, Album $album)
-    // {
-    //     $validated = $request->validate([
-    //         'rating' => 'required|integer|min:1|max:5',
-    //         'comment' => 'required|string|max:500',
-    //     ]);
-    
-    //     $album->reviews()->create([
-    //         'user_id' => auth()->id(),
-    //         'rating' => $validated['rating'],
-    //         'comment' => $validated['comment'],
-    //     ]);
-    
-    //     return redirect()->route('albums.show', $album->id)
-    //                      ->with('success', 'Review added successfully!');
-    // }
     public function destroy(Review $review)
     {
-        $albumId = $review->id;
+        // Get the associated album ID
+        $albumId = $review->album_id;
     
         // Delete the review
         $review->delete();
@@ -99,5 +85,5 @@ class ReviewController extends Controller
         return redirect()->route('albums.show', $albumId)
             ->with('success', 'Review deleted successfully!');
     }
- 
+    
 }

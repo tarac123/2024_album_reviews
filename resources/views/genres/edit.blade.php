@@ -1,29 +1,22 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Edit Genre') }}
+        </h2>
+    </x-slot>
 
-@section('content')
-    <h1>Edit Genre</h1>
-    <form action="{{ route('genres.update', $genre->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <label for="name">Name:</label>
+    <div class="container mx-auto px-4 py-6">
+        <h1 class="text-2xl font-semibold mb-4">Edit Genre</h1>
 
-        <!-- add component called genre-form -->
-        <x-genre-form                            
-                               :action="route('genres.update', $genre)"
-                               :method="'PATCH'"
-                               :genre="$genre"
-                               :albums="$albums"  
-                               :genreAlbums='$genreAlbums'                            
-                            />
-        <input type="text" name="name" value="{{ $genre->name }}" required>
-        <button type="submit">Update</button>
-   
-@endsection
+        <!-- Use the genre-form component -->
+        <x-genre-form 
+    :action="route('genres.update', $genre->id)" 
+    method="PUT" 
+    :genre="$genre" 
+    :genres="$genres" 
+    :albums="$albums" 
+    :genreAlbums="$genreAlbums" 
+/>
 
-<div>
-        <x-primary-button>
-            {{ isset($category) ? 'Update Category' : 'Add Category' }}
-        </x-primary-button>
     </div>
-</form>
- 
+</x-app-layout>

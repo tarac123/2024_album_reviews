@@ -32,7 +32,8 @@ Route::resource('reviews', ReviewController::class);
 Route::get('/albums/{album}/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
 Route::post('/albums/{album}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 Route::get('/reviews/{review}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
-//Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
+Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
+
 
 Route::resource('genres', GenreController::class);
 Route::get('/genres/{genre}', [GenreController::class, 'show'])->name('genres.show');
