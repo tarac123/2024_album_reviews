@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    use HasFactory;  // This should come before other properties
+    use HasFactory;  
     
     public $timestamps = true;
     
@@ -20,10 +20,8 @@ class Review extends Model
     
     public function album()
     {
-        // Fix: Remove the redundant id in the relationship
+       
         return $this->belongsTo(Album::class);
-        // Or if you need to specify the keys explicitly:
-        // return $this->belongsTo(Album::class, 'id');
     }
     
     public function user()

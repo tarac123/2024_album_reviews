@@ -16,6 +16,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-900">
                     <h3 class="font-semibold text-lg mb-4">All Genres</h3>
+                    <!-- if the user is an admin is displays the option to add a genre -->
                     @if(auth()->user()->role === 'admin')
                     <x-nav-link 
                         class="bg-green-500 text-xl text-white font-bold py-4 pt-4 px-6 rounded-full flex justify-center items-center mb-6" 
@@ -23,7 +24,7 @@
                         {{ __('Add Genre') }}
                     </x-nav-link>
                     @endif
-
+                    <!-- displays all genre names -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach ($genres as $genre)
                             <a href="{{ route('genres.show', $genre->id) }}" class="block">

@@ -15,7 +15,6 @@ class AlbumController extends Controller
     public function index()
     {
         $albums = Album::all(); //fetch all albums
-        // dd($albums);
         return view('albums.index', compact('albums')); //return the view with albums
     }
 

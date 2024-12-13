@@ -14,11 +14,13 @@
                     <h3 class="font-semibold text-lg mb-4">
                         Results for "{{ $query }}"
                     </h3>
+                    
                     <!-- if the search results are empty it displays a message saying No albums found -->
                     @if($albums->isEmpty())
                         <p class="text-gray-500 text-center py-8">No albums found.</p>
                     @else
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+
                         <!-- displays the returned album results (album title, aritst and release date) -->
                     @foreach($albums as $album)
                     <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">

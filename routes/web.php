@@ -31,9 +31,6 @@ Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('revi
 
 Route::resource('genres', GenreController::class);
 Route::get('/genres/{genre}', [GenreController::class, 'show'])->name('genres.show');
-// Route::get('/albums', [GenreController::class, 'index'])->name('genres.index');
-// Route::get('/albums/{album}/genres/create', [GenreController::class, 'create'])->name('genres.create');
-// Route::post('/albums/{album}/genres', [GenreController::class, 'store'])->name('genres.store');
 Route::get('/genres/{genre}/edit', [GenreController::class, 'edit'])->name('genres.edit');
 Route::delete('/genres/{genre}', [GenreController::class, 'destroy'])->name('genres.destroy');
 

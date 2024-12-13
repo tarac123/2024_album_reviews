@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h3 class="font-semibold text-lg mb-6">Add a New Album:</h3>
-
+                    <!-- displays the album form -->
                     <x-album-form
                         :action="route('albums.store')"
                         :method="'POST'"

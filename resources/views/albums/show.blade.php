@@ -78,50 +78,54 @@
     :href="route('reviews.create', $album)">
     {{ __('Add a review') }}
 </x-nav-link>
+                <!-- Check if there are reviews -->
+@if($album->reviews->isEmpty())
+    <p class="text-gray-600 mb-6 mt-6 bg-gray-100 rounded-lg h-12 p-3">No reviews yet.</p>
+@else
+    <ul class="mt-4 space-y-4 mb-6">
+        <!-- Loop through the reviews -->
+        @foreach($album->reviews as $review)
+            <li class="bg-gray-100 p-4 rounded-lg">
+                <p class="font-semibold">{{ $review->user->name }}</p>
+                <p>Rating: {{ $review->rating }} / 5</p>
+                <p>{{ $review->comment }}</p>
 
-                @if($album->reviews->isEmpty())
-                        <p class="text-gray-600 mb-6 mt-6 bg-gray-100 rounded-lg h-12 p-3">No reviews yet.</p>
-                    @else
-                        <ul class="mt-4 space-y-4 mb-6">
-                            @foreach($album->reviews as $review)
-                                <li class="bg-gray-100 p-4 rounded-lg">
-                                    <p class="font-semibold">{{ $review->user->name }}  </p>
-                                    <p>Rating: {{ $review->rating }} / 5 </p>
-                                    <p> {{ $review->comment }} </p>
-
-                                @if ($review->user->is(auth()->user()) || auth()->user()->role === 'admin')
-
-                                <div class="relative">
-                                    <x-dropdown>
-                                        <x-slot name="trigger">
-                                            <button class="absolute top-0 right-0">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                                </svg>
-                                            </button>
-                                        </x-slot>
-                                        <x-slot name="content">
-                                            <x-dropdown-link :href="route('reviews.edit', $review)">
-                                                {{ __('Edit') }}
-                                            </x-dropdown-link>
-                                            <form method="POST" action="{{ route('reviews.destroy', $review) }}">
-                                                @csrf
-                                                @method('delete')
-                                                <x-dropdown-link :href="route('reviews.destroy', $review)" onclick="event.preventDefault(); this.closest('form').submit();">
-                                                    {{ __('Delete') }}
-                                                </x-dropdown-link>
-                                            </form>
-                                        </x-slot>
-                                    </x-dropdown>
-                                </div>
-                                @endif
-                            </li>
-                        @endforeach
-                        </ul>
-                @endif
-
+                <!-- Admin-only dropdown for edit and delete -->
+                <div class="relative">
+                    @if (auth()->user()->role === 'admin')
+                        <!-- Dropdown menu for edit and delete -->
+                        <x-dropdown>
+                            <x-slot name="trigger">
+                                <button class="absolute top-0 right-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                    </svg>
+                                </button>
+                            </x-slot>
+                            <x-slot name="content">
+                                <!-- Link to edit the review -->
+                                <x-dropdown-link :href="route('reviews.edit', $review)">
+                                    {{ __('Edit') }}
+                                </x-dropdown-link>
+                                <!-- Form to delete the review -->
+                                <form method="POST" action="{{ route('reviews.destroy', $review) }}">
+                                    @csrf
+                                    @method('delete')
+                                    <x-dropdown-link :href="route('reviews.destroy', $review)" onclick="event.preventDefault(); this.closest('form').submit();">
+                                        {{ __('Delete') }}
+                                    </x-dropdown-link>
+                                </form>
+                            </x-slot>
+                        </x-dropdown>
+                    @endif
+                </div>
+            </li>
+        @endforeach
+    </ul>
+@endif
 
                         <!-- Action Buttons -->
+                         
                          <!-- edit button -->
                          @if(auth()->user()->role === 'admin')
                         <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 mt-6">
